@@ -11,4 +11,5 @@ export default (app: Router, presentationController: IPresentationController): v
     '/:presentationId/attendees/:attendeeId',
     presentationController.addAttendeeToPresentation
   );
+  router.get('/', presentationController.getAll);
 };

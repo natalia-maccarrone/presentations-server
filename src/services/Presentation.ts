@@ -5,6 +5,7 @@ import AttendeeRepository from '../database/repository/Attendee';
 
 export interface PresentationServiceI {
   addPresentation(newPresentation: PresentationPayload): Promise<Presentation>;
+  getAll(): Promise<Presentation[]>;
 }
 
 class PresentationService implements PresentationServiceI {
@@ -21,6 +22,11 @@ class PresentationService implements PresentationServiceI {
     const attendeeRepository = new AttendeeRepository();
     await presentationRepository.update(presentationId, attendeeId);
     await attendeeRepository.register(new Date(), attendeeId);
+  }
+
+  public async getAll(): Promise<Presentation[]> {
+    const presentationRepository = new PresentationRepository();
+    return presentationRepository.getAll();
   }
 }
 

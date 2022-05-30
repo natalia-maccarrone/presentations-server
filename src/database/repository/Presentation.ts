@@ -10,7 +10,10 @@ export default class PresentationRepository {
   }
 
   async getAll(): Promise<Presentation[]> {
-    return await this.repository.find();
+    return await this.repository
+      .createQueryBuilder('presentation')
+      .leftJoinAndSelect('presentation.attendees', 'attendees')
+      .getMany();
   }
 
   private castPresentationPayload(payload: PresentationPayload) {

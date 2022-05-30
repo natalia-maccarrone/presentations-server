@@ -4,6 +4,7 @@ import services from '../services';
 export interface IPresentationController {
   addPresentation(req: Request, res: Response): Promise<void>;
   addAttendeeToPresentation(req: Request, res: Response): Promise<void>;
+  getAll(req: Request, res: Response): Promise<void>;
 }
 
 class PresentationController {
@@ -27,6 +28,16 @@ class PresentationController {
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
       res.status(500).send('There was an error adding the attendee.');
+    }
+  }
+
+  public async getAll(req: Request, res: Response): Promise<void> {
+    try {
+      const presentations = await services.presentationService.getAll();
+      res.send(presentations);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+      res.status(500).send('There was an error retrieving the presentations.');
     }
   }
 }
