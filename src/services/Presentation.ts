@@ -1,6 +1,7 @@
 import { Presentation } from '../database/entity/Presentation';
 import { PresentationPayload } from '../types';
 import PresentationRepository from '../database/repository/Presentation';
+import AttendeeRepository from '../database/repository/Attendee';
 
 export interface PresentationServiceI {
   addPresentation(newPresentation: PresentationPayload): Promise<Presentation>;
@@ -17,7 +18,9 @@ class PresentationService implements PresentationServiceI {
     attendeeId: string
   ): Promise<void> {
     const presentationRepository = new PresentationRepository();
+    const attendeeRepository = new AttendeeRepository();
     await presentationRepository.update(presentationId, attendeeId);
+    await attendeeRepository.register(new Date(), attendeeId);
   }
 }
 

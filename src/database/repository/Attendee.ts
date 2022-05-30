@@ -22,4 +22,14 @@ export default class AttendeeRepository {
       .execute();
     return res.raw[0];
   }
+
+  async register(date: Date, attendeeId: string): Promise<void> {
+    console.log(date);
+    await this.repository
+      .createQueryBuilder()
+      .update(Attendee)
+      .set({ registeredAt: date })
+      .where('id = :id', { id: attendeeId })
+      .execute();
+  }
 }
