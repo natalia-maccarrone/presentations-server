@@ -16,6 +16,9 @@ export class Presentation {
   id!: string;
 
   @Column()
+  title!: string;
+
+  @Column()
   details!: string;
 
   @Column()
