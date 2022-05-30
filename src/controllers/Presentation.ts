@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import services from '../services';
+import CustomError from '../errors';
 
 export interface IPresentationController {
   addPresentation(req: Request, res: Response): Promise<void>;
@@ -10,11 +11,17 @@ export interface IPresentationController {
 class PresentationController {
   public async addPresentation(req: Request, res: Response): Promise<void> {
     try {
+      const { title, details, room, speaker } = req.body;
+      if (!title || !details || !room || !speaker) {
+        throw new CustomError('Missing payload data', 400);
+      }
+      if (typeof room !== 'number') {
+        throw new CustomError('Room should be a number', 400);
+      }
       const presentation = await services.presentationService.addPresentation(req.body);
       res.send(presentation);
-    } catch (error) {
-      if (error instanceof Error) console.log(error.message);
-      res.status(500).send('There was an error creating the presentation.');
+    } catch (error: any) {
+      res.status(error.statusCode).send({ Error: error.message });
     }
   }
 
