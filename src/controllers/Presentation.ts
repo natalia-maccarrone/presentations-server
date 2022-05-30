@@ -9,9 +9,7 @@ export interface IPresentationController {
 class PresentationController {
   public async addPresentation(req: Request, res: Response): Promise<void> {
     try {
-      const presentation = await services.presentationService.addPresentation(
-        req.body.presentation
-      );
+      const presentation = await services.presentationService.addPresentation(req.body);
       res.send(presentation);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);

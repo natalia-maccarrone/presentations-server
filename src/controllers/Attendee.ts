@@ -8,7 +8,7 @@ export interface IAttendeeController {
 class AttendeeController {
   public async addAttendee(req: Request, res: Response): Promise<void> {
     try {
-      const attendee = await services.attendeeService.addAttendee(req.body.attendee);
+      const attendee = await services.attendeeService.addAttendee(req.body);
       res.send(attendee);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
