@@ -6,9 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon",
-    "build": "rm -rf ./build && tsc",
+    "build": "rm -rf ./built && tsc",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
-    "db:migrate": "npm run typeorm migration:run"
+    "db:migrate": "npm run typeorm migration:run",
+    "heroku-postbuild": "npm run db:migrate && cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "Natalia Maccarrone",

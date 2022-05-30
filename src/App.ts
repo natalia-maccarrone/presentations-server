@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import express from 'express';
 import { createConnection } from 'typeorm';
 import cors from 'cors';
+import path from 'path';
 
 export class App {
   public app: express.Application;
@@ -13,6 +14,7 @@ export class App {
   private setAppConfigs(): void {
     this.app.use(express.json());
     this.app.use(cors());
+    this.app.use(express.static(path.resolve(__dirname, './client/build')));
   }
 
   private async setRoutes(): Promise<void> {
