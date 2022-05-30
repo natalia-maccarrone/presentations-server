@@ -10,16 +10,14 @@ Sample body (all fields are required):
 
 ```
 {
-    "presentation": {
-        "title": <string>,
-        "details": <string>,
-        "room": <number>,
-        "speaker": {
-            "name": <string>,
-            "company": <string>",
-            "email": <string>,
-            "bio": <string>
-        }
+    "title": <string>,
+    "details": <string>,
+    "room": <number>,
+    "speaker": {
+        "name": <string>,
+        "company": <string>",
+        "email": <string>,
+        "bio": <string>
     }
 }
 ```
@@ -30,11 +28,9 @@ Sample body (all fields are required):
 
 ```
 {
-    "attendee": {
-        "name": <string>,
-        "company": <string>,
-        "email": <string>
-    }
+    "name": <string>,
+    "company": <string>,
+    "email": <string>
 }
 ```
 
