@@ -25,6 +25,7 @@ export default class PresentationRepository {
       .insert()
       .into(Presentation)
       .values(values)
+      .returning(['id', 'title', 'details', 'room', 'speaker'])
       .execute();
     return res.raw[0];
   }

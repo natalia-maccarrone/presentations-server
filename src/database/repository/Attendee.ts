@@ -19,6 +19,7 @@ export default class AttendeeRepository {
       .insert()
       .into(Attendee)
       .values(payload)
+      .returning(['id', 'name', 'company', 'email', 'registeredAt'])
       .execute();
     return res.raw[0];
   }
