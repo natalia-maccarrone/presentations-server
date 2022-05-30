@@ -7,4 +7,5 @@ export default (app: Router, attendeeController: IAttendeeController): void => {
   app.use('/attendees', router);
 
   router.post('/', attendeeController.addAttendee);
+  router.get('/', attendeeController.getAll);
 };
