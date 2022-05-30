@@ -5,7 +5,8 @@ RESTful API for the real estate investing conference hosted by 'Su Casa'.
 This API exposes three endpoints:
 
 - POST /su-casa/api/v1/presentation (Creates a new presentation)
-  Sample body (all fields are required):
+
+Sample body (all fields are required):
 
 ```
 {
