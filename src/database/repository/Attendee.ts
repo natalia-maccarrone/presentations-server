@@ -25,7 +25,6 @@ export default class AttendeeRepository {
   }
 
   async register(date: Date, attendeeId: string): Promise<void> {
-    console.log(date);
     await this.repository
       .createQueryBuilder()
       .update(Attendee)
